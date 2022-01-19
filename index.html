@@ -5,8 +5,28 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Simon game</title>
+    <link rel="stylesheet" href="style.css" />
   </head>
   <body>
+    <section class="main-container">
+      <h1 class="main-title">Simon game</h1>
+
+      <h2 class="subtitle">A game to train your memory</h2>
+
+      <div class="instructions">
+        <h3>How to play:</h3>
+        <ol>
+          <li>Follow the color sequence</li>
+          <li>Follow rule 1</li>
+        </ol>
+      </div>
+
+      <section class="color-container" id="game-colors"></section>
+
+      <button class="start-button" id="start-game">Start game</button>
+    </section>
+
     <script src="./game.js"></script>
+    <script src="./tests.js"></script>
   </body>
 </html>
