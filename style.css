@@ -1,0 +1,206 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+  margin: 0;
+  padding: 0;
+  border: 0;
+  font-size: 100%;
+  font: inherit;
+  vertical-align: baseline;
+}
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+  display: block;
+}
+body {
+  line-height: 1;
+}
+ul {
+  list-style: none;
+}
+blockquote,
+q {
+  quotes: none;
+}
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+  content: '';
+  content: none;
+}
+table {
+  border-collapse: collapse;
+  border-spacing: 0;
+}
+
+.main-container {
+  display: grid;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #181c3a;
+}
+
+.main-title {
+  justify-self: center;
+  color: white;
+  font-size: 10vh;
+}
+
+.subtitle {
+  justify-self: center;
+  color: white;
+  font-size: 5vh;
+}
+
+.instructions {
+  justify-self: start;
+  color: white;
+  font-size: 2.5vh;
+}
+
+.color-container {
+  display: grid;
+  justify-self: center;
+  justify-items: center;
+  align-items: center;
+  height: 50vh;
+  width: 50vh;
+}
+
+#green-button {
+  cursor: pointer;
+  border-top-left-radius: 100%;
+  background-color: green;
+  grid-row: 1;
+  height: 100%;
+  width: 100%;
+}
+
+#red-button {
+  cursor: pointer;
+  border-top-right-radius: 100%;
+  background-color: red;
+  grid-row: 1;
+  height: 100%;
+  width: 100%;
+}
+
+#blue-button {
+  cursor: pointer;
+  border-bottom-left-radius: 100%;
+  background-color: blue;
+  grid-row: 2;
+  height: 100%;
+  width: 100%;
+}
+
+#yellow-button {
+  cursor: pointer;
+  border-bottom-right-radius: 100%;
+  background-color: yellow;
+  grid-row: 2;
+  height: 100%;
+  width: 100%;
+}
+
+.start-button {
+  height: 5vh;
+  background-color: #ebbf6e;
+  color: white;
+  font-size: 2.5vh;
+  border-radius: 5px;
+}
