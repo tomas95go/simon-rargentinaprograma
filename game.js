@@ -16,7 +16,6 @@ $yellowButton.addEventListener('click', recordPlayerActions, false);
 const game = {
   colors: ['green', 'red', 'blue', 'yellow'],
   color_sequence: [],
-  sequence: 1,
 };
 
 const player = {
@@ -26,6 +25,26 @@ const player = {
 };
 
 let canContinue = true;
+
+function gameOver() {
+  reset(game.color_sequence);
+  reset(player.color_sequence);
+  player.sequence = 1;
+  canContinue = true;
+  return canContinue;
+}
+
+function nextRound() {
+  player.sequence += 1;
+  reset(player.color_sequence);
+  if (canContinue) {
+    generateRandomColorSequence(game.color_sequence, game.colors);
+  }
+}
+
+function start() {
+  return generateRandomColorSequence(game.color_sequence, game.colors);
+}
 
 function recordPlayerActions(event) {
   const playerInput = capturePlayerInput(event);
@@ -50,10 +69,21 @@ function capturePlayerInput(event) {
 }
 
 function evaluatePayerSequence(playerSequence, gameSequence, canContinue) {
+  let correctAttempts = 0;
   for (let i = 0; i < playerSequence.length; i++) {
     if (playerSequence[i] !== gameSequence[i]) {
       canContinue = false;
+    } else {
+      correctAttempts += 1;
     }
+  }
+
+  if (canContinue && correctAttempts === gameSequence.length) {
+    nextRound();
+  }
+
+  if (!canContinue) {
+    canContinue = gameOver();
   }
 
   return canContinue;
@@ -65,4 +95,9 @@ function generateRandomNumber(min, max) {
 
 function generateRandomColor(colors, randomNumber) {
   return colors[randomNumber];
+}
+
+function reset(sequence) {
+  sequence.length = 0;
+  return sequence.length;
 }
