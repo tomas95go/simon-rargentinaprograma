@@ -27,3 +27,8 @@ console.assert(
   evaluatePayerSequence(['red'], ['red'], true) === true,
   `Player sequence doesn't match game sequence`
 );
+
+console.assert(
+  reset(['green', 'greeb', 'red', 'yellow', 'blue']) === 0,
+  `Sequence didn't reset correctly`
+);
