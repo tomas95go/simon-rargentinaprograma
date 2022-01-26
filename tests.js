@@ -1,4 +1,35 @@
 //Write tests for initializeGameSettings and initializePlayerSettings
+console.assert(
+  gameOver(
+    {
+      name: '',
+      color_sequence: ['red'],
+      sequence: 1,
+      can_continue: true,
+    },
+    {
+      colors: ['green', 'red', 'blue', 'yellow'],
+      color_sequence: ['red'],
+    }
+  ) === true,
+  `Game didn't reset correctly`
+);
+
+console.assert(
+  nextRound(
+    {
+      name: '',
+      color_sequence: ['red'],
+      sequence: 1,
+      can_continue: true,
+    },
+    {
+      colors: ['green', 'red', 'blue', 'yellow'],
+      color_sequence: ['red'],
+    }
+  ) === true,
+  `Game didn't advance to next level`
+);
 
 console.assert(
   recordPlayerActions(
@@ -52,7 +83,7 @@ console.assert(
     },
     {
       colors: ['green', 'red', 'blue', 'yellow'],
-      color_sequence: ['blue'],
+      color_sequence: ['red'],
     }
   ) === true,
   `Player sequence doesn't match game sequence`
