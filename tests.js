@@ -1,3 +1,5 @@
+//Write tests for initializeGameSettings and initializePlayerSettings
+
 console.assert(
   generateRandomNumber(1, 2) > 0,
   'Generated numbers exceed the min'

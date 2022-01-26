@@ -1,30 +1,23 @@
 const $startButton = document.getElementById('start-game');
 $startButton.addEventListener('click', start, false);
 
-const $greenButton = document.getElementById('green-button');
-$greenButton.addEventListener('click', recordPlayerActions, false);
+function initializeGameSettings() {
+  const game = {
+    colors: ['green', 'red', 'blue', 'yellow'],
+    color_sequence: [],
+  };
+  return game;
+}
 
-const $redButton = document.getElementById('red-button');
-$redButton.addEventListener('click', recordPlayerActions, false);
-
-const $blueButton = document.getElementById('blue-button');
-$blueButton.addEventListener('click', recordPlayerActions, false);
-
-const $yellowButton = document.getElementById('yellow-button');
-$yellowButton.addEventListener('click', recordPlayerActions, false);
-
-const game = {
-  colors: ['green', 'red', 'blue', 'yellow'],
-  color_sequence: [],
-};
-
-const player = {
-  name: '',
-  color_sequence: [],
-  sequence: 1,
-};
-
-let canContinue = true;
+function initializePlayerSettings() {
+  const player = {
+    name: '',
+    color_sequence: [],
+    sequence: 1,
+    can_continue: true,
+  };
+  return player;
+}
 
 function gameOver() {
   reset(game.color_sequence);
@@ -43,6 +36,48 @@ function nextRound() {
 }
 
 function start() {
+  const game = initializeGameSettings();
+
+  const player = initializePlayerSettings();
+
+  let canContinue = true;
+
+  const $greenButton = document.getElementById('green-button');
+  $greenButton.addEventListener(
+    'click',
+    function (event) {
+      recordPlayerActions(event, player, canContinue);
+    },
+    false
+  );
+
+  const $redButton = document.getElementById('red-button');
+  $redButton.addEventListener(
+    'click',
+    function (event) {
+      recordPlayerActions(event, player, canContinue);
+    },
+    false
+  );
+
+  const $blueButton = document.getElementById('blue-button');
+  $blueButton.addEventListener(
+    'click',
+    function (event) {
+      recordPlayerActions(event, player, canContinue);
+    },
+    false
+  );
+
+  const $yellowButton = document.getElementById('yellow-button');
+  $yellowButton.addEventListener(
+    'click',
+    function (event) {
+      recordPlayerActions(event, player, canContinue);
+    },
+    false
+  );
+
   return generateRandomColorSequence(game.color_sequence, game.colors);
 }
 
