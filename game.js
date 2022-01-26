@@ -40,13 +40,11 @@ function start() {
 
   const player = initializePlayerSettings();
 
-  let canContinue = true;
-
   const $greenButton = document.getElementById('green-button');
   $greenButton.addEventListener(
     'click',
     function (event) {
-      recordPlayerActions(event, player, canContinue, game);
+      recordPlayerActions(event, player, game);
     },
     false
   );
@@ -55,7 +53,7 @@ function start() {
   $redButton.addEventListener(
     'click',
     function (event) {
-      recordPlayerActions(event, player, canContinue, game);
+      recordPlayerActions(event, player, game);
     },
     false
   );
@@ -64,7 +62,7 @@ function start() {
   $blueButton.addEventListener(
     'click',
     function (event) {
-      recordPlayerActions(event, player, canContinue, game);
+      recordPlayerActions(event, player, game);
     },
     false
   );
@@ -73,7 +71,7 @@ function start() {
   $yellowButton.addEventListener(
     'click',
     function (event) {
-      recordPlayerActions(event, player, canContinue, game);
+      recordPlayerActions(event, player, game);
     },
     false
   );
