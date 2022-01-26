@@ -19,20 +19,21 @@ function initializePlayerSettings() {
   return player;
 }
 
-function gameOver() {
+function gameOver(player, game) {
   reset(game.color_sequence);
   reset(player.color_sequence);
   player.sequence = 1;
-  canContinue = true;
-  return canContinue;
+  player.can_continue = true;
+  return player.can_continue;
 }
 
-function nextRound() {
+function nextRound(player, game) {
   player.sequence += 1;
   reset(player.color_sequence);
-  if (canContinue) {
+  if (player.can_continue) {
     generateRandomColorSequence(game.color_sequence, game.colors);
   }
+  return player.can_continue;
 }
 
 function start() {
@@ -83,6 +84,9 @@ function recordPlayerActions(event, player, game) {
   const playerInput = capturePlayerInput(event);
   player.color_sequence.push(playerInput);
   player.can_continue = evaluatePayerSequence(player, game);
+  if (!player.can_continue) {
+    player.can_continue = gameOver(player, game);
+  }
   return player.can_continue;
 }
 
@@ -109,11 +113,7 @@ function evaluatePayerSequence(player, game) {
   }
 
   if (player.can_continue && correctAttempts === game.color_sequence.length) {
-    nextRound(player, game);
-  }
-
-  if (!player.can_continue) {
-    player.can_continue = gameOver(player, game);
+    player.can_continue = nextRound(player, game);
   }
 
   return player.can_continue;
