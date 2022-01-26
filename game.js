@@ -46,7 +46,7 @@ function start() {
   $greenButton.addEventListener(
     'click',
     function (event) {
-      recordPlayerActions(event, player, canContinue);
+      recordPlayerActions(event, player, canContinue, game);
     },
     false
   );
@@ -55,7 +55,7 @@ function start() {
   $redButton.addEventListener(
     'click',
     function (event) {
-      recordPlayerActions(event, player, canContinue);
+      recordPlayerActions(event, player, canContinue, game);
     },
     false
   );
@@ -64,7 +64,7 @@ function start() {
   $blueButton.addEventListener(
     'click',
     function (event) {
-      recordPlayerActions(event, player, canContinue);
+      recordPlayerActions(event, player, canContinue, game);
     },
     false
   );
@@ -73,7 +73,7 @@ function start() {
   $yellowButton.addEventListener(
     'click',
     function (event) {
-      recordPlayerActions(event, player, canContinue);
+      recordPlayerActions(event, player, canContinue, game);
     },
     false
   );
