@@ -43,7 +43,18 @@ console.assert(
 );
 
 console.assert(
-  evaluatePayerSequence(['red'], ['red'], true) === true,
+  evaluatePayerSequence(
+    {
+      name: '',
+      color_sequence: ['red'],
+      sequence: 1,
+      can_continue: true,
+    },
+    {
+      colors: ['green', 'red', 'blue', 'yellow'],
+      color_sequence: ['blue'],
+    }
+  ) === true,
   `Player sequence doesn't match game sequence`
 );
 

@@ -98,25 +98,25 @@ function capturePlayerInput(event) {
   return event.target.value;
 }
 
-function evaluatePayerSequence(playerSequence, gameSequence, canContinue) {
+function evaluatePayerSequence(player, game) {
   let correctAttempts = 0;
-  for (let i = 0; i < playerSequence.length; i++) {
-    if (playerSequence[i] !== gameSequence[i]) {
-      canContinue = false;
+  for (let i = 0; i < player.color_sequence.length; i++) {
+    if (player.color_sequence[i] !== game.color_sequence[i]) {
+      player.can_continue = false;
     } else {
       correctAttempts += 1;
     }
   }
 
-  if (canContinue && correctAttempts === gameSequence.length) {
-    nextRound();
+  if (player.can_continue && correctAttempts === game.color_sequence.length) {
+    nextRound(player, game);
   }
 
-  if (!canContinue) {
-    canContinue = gameOver();
+  if (!player.can_continue) {
+    player.can_continue = gameOver(player, game);
   }
 
-  return canContinue;
+  return player.can_continue;
 }
 
 function generateRandomNumber(min, max) {
