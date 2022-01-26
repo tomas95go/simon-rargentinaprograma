@@ -79,14 +79,11 @@ function start() {
   return generateRandomColorSequence(game.color_sequence, game.colors);
 }
 
-function recordPlayerActions(event) {
+function recordPlayerActions(event, player, game) {
   const playerInput = capturePlayerInput(event);
   player.color_sequence.push(playerInput);
-  canContinue = evaluatePayerSequence(
-    player.color_sequence,
-    game.color_sequence,
-    canContinue
-  );
+  player.can_continue = evaluatePayerSequence(player, game);
+  return player.can_continue;
 }
 
 function generateRandomColorSequence(colorSequence, colors) {

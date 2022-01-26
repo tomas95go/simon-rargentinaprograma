@@ -1,6 +1,23 @@
 //Write tests for initializeGameSettings and initializePlayerSettings
 
 console.assert(
+  recordPlayerActions(
+    { target: { value: 'blue' } },
+    {
+      name: '',
+      color_sequence: [],
+      sequence: 1,
+      can_continue: true,
+    },
+    {
+      colors: ['green', 'red', 'blue', 'yellow'],
+      color_sequence: ['blue'],
+    }
+  ) === true,
+  `Player actions weren't recorded correctly`
+);
+
+console.assert(
   generateRandomNumber(1, 2) > 0,
   'Generated numbers exceed the min'
 );
