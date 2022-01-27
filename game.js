@@ -33,6 +33,9 @@ function nextRound(player, game) {
   if (player.can_continue) {
     generateRandomColorSequence(game.color_sequence, game.colors);
   }
+
+  light(game);
+
   return player.can_continue;
 }
 
@@ -77,7 +80,11 @@ function start() {
     false
   );
 
-  return generateRandomColorSequence(game.color_sequence, game.colors);
+  generateRandomColorSequence(game.color_sequence, game.colors);
+
+  light(game);
+
+  return game.color_sequence.length;
 }
 
 function recordPlayerActions(event, player, game) {
@@ -130,4 +137,19 @@ function generateRandomColor(colors, randomNumber) {
 function reset(sequence) {
   sequence.length = 0;
   return sequence.length;
+}
+
+function light(game) {
+  let delay = 0;
+  for (let i = 0; i < game.color_sequence.length; i++) {
+    delay += 1;
+    const $button = document.getElementById(`${game.color_sequence[i]}-button`);
+    setTimeout(function () {
+      $button.classList.add('light');
+    }, 1000 * delay);
+    setTimeout(function () {
+      $button.classList.remove('light');
+    }, 1250 * delay);
+  }
+  return true;
 }
