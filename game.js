@@ -24,6 +24,8 @@ function gameOver(player, game) {
   reset(player.color_sequence);
   player.sequence = 1;
   player.can_continue = true;
+  $startButton.removeAttribute('disabled');
+  $startButton.textContent = `Start`;
   return player.can_continue;
 }
 
@@ -40,6 +42,8 @@ function nextRound(player, game) {
 }
 
 function start() {
+  $startButton.setAttribute('disabled', true);
+
   const game = initializeGameSettings();
 
   const player = initializePlayerSettings();
@@ -141,8 +145,11 @@ function reset(sequence) {
 
 function light(game) {
   let delay = 0;
+
   for (let i = 0; i < game.color_sequence.length; i++) {
     delay += 1;
+    $startButton.textContent = `Computers turn!`;
+    disabledButtons();
     const $button = document.getElementById(`${game.color_sequence[i]}-button`);
     setTimeout(function () {
       $button.classList.add('light');
@@ -150,6 +157,38 @@ function light(game) {
     setTimeout(function () {
       $button.classList.remove('light');
     }, 1250 * delay);
+
+    if (delay === game.color_sequence.length) {
+      setTimeout(function () {
+        $startButton.textContent = `Your turn!`;
+        enableButtons();
+      }, 1250 * delay);
+    }
   }
+
   return true;
+}
+
+function disabledButtons() {
+  const $greenButton = document.getElementById('green-button');
+  const $redButton = document.getElementById('red-button');
+  const $blueButton = document.getElementById('blue-button');
+  const $yellowButton = document.getElementById('yellow-button');
+
+  $greenButton.setAttribute('disabled', true);
+  $redButton.setAttribute('disabled', true);
+  $blueButton.setAttribute('disabled', true);
+  $yellowButton.setAttribute('disabled', true);
+}
+
+function enableButtons() {
+  const $greenButton = document.getElementById('green-button');
+  const $redButton = document.getElementById('red-button');
+  const $blueButton = document.getElementById('blue-button');
+  const $yellowButton = document.getElementById('yellow-button');
+
+  $greenButton.removeAttribute('disabled');
+  $redButton.removeAttribute('disabled');
+  $blueButton.removeAttribute('disabled');
+  $yellowButton.removeAttribute('disabled');
 }
