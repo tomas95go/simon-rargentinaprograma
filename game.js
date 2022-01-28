@@ -56,36 +56,28 @@ function start() {
   const $greenButton = document.getElementById('green-button');
   $greenButton.addEventListener(
     'click',
-    function (event) {
-      recordPlayerActions(event, player, game);
-    },
+    (event) => recordPlayerActions(event, player, game),
     false
   );
 
   const $redButton = document.getElementById('red-button');
   $redButton.addEventListener(
     'click',
-    function (event) {
-      recordPlayerActions(event, player, game);
-    },
+    (event) => recordPlayerActions(event, player, game),
     false
   );
 
   const $blueButton = document.getElementById('blue-button');
   $blueButton.addEventListener(
     'click',
-    function (event) {
-      recordPlayerActions(event, player, game);
-    },
+    (event) => recordPlayerActions(event, player, game),
     false
   );
 
   const $yellowButton = document.getElementById('yellow-button');
   $yellowButton.addEventListener(
     'click',
-    function (event) {
-      recordPlayerActions(event, player, game);
-    },
+    (event) => recordPlayerActions(event, player, game),
     false
   );
 
