@@ -24,8 +24,13 @@ function gameOver(player, game) {
   reset(player.color_sequence);
   player.sequence = 1;
   player.can_continue = true;
-  $startButton.removeAttribute('disabled');
-  $startButton.textContent = `Start`;
+  $startButton.textContent = `Game Over!`;
+
+  setTimeout(function () {
+    $startButton.removeAttribute('disabled');
+    $startButton.textContent = `Start game`;
+  }, 1000);
+
   return player.can_continue;
 }
 
@@ -149,27 +154,27 @@ function light(game) {
   for (let i = 0; i < game.color_sequence.length; i++) {
     delay += 1;
     $startButton.textContent = `Computers turn!`;
-    disabledButtons();
+    disableButtons();
     const $button = document.getElementById(`${game.color_sequence[i]}-button`);
     setTimeout(function () {
       $button.classList.add('light');
     }, 1000 * delay);
     setTimeout(function () {
       $button.classList.remove('light');
-    }, 1250 * delay);
+    }, 1100 * delay);
 
     if (delay === game.color_sequence.length) {
       setTimeout(function () {
         $startButton.textContent = `Your turn!`;
         enableButtons();
-      }, 1250 * delay);
+      }, 1100 * delay);
     }
   }
 
   return true;
 }
 
-function disabledButtons() {
+function disableButtons() {
   const $greenButton = document.getElementById('green-button');
   const $redButton = document.getElementById('red-button');
   const $blueButton = document.getElementById('blue-button');
