@@ -1,53 +1,8 @@
-const $startButton = document.getElementById('start-game');
-$startButton.addEventListener('click', start, false);
-
-function initializeGameSettings() {
-  const game = {
-    colors: ['green', 'red', 'blue', 'yellow'],
-    color_sequence: [],
-  };
-  return game;
-}
-
-function initializePlayerSettings() {
-  const player = {
-    name: '',
-    color_sequence: [],
-    sequence: 1,
-    can_continue: true,
-  };
-  return player;
-}
-
-function gameOver(player, game) {
-  reset(game.color_sequence);
-  reset(player.color_sequence);
-  player.sequence = 1;
-  player.can_continue = true;
-  $startButton.textContent = `Game Over!`;
-
-  setTimeout(function () {
-    $startButton.removeAttribute('disabled');
-    $startButton.textContent = `Start game`;
-  }, 1000);
-
-  return player.can_continue;
-}
-
-function nextRound(player, game) {
-  player.sequence += 1;
-  reset(player.color_sequence);
-  if (player.can_continue) {
-    generateRandomColorSequence(game.color_sequence, game.colors);
-  }
-
-  light(game);
-
-  return player.can_continue;
-}
-
-function start() {
-  $startButton.setAttribute('disabled', true);
+initializeGame();
+function initializeGame() {
+  disableButtons();
+  const $startButton = document.getElementById('start-game');
+  $startButton.addEventListener('click', () => start(game), false);
 
   const game = initializeGameSettings();
 
@@ -80,6 +35,58 @@ function start() {
     (event) => recordPlayerActions(event, player, game),
     false
   );
+}
+
+function initializeGameSettings() {
+  const game = {
+    colors: ['green', 'red', 'blue', 'yellow'],
+    color_sequence: [],
+  };
+  return game;
+}
+
+function initializePlayerSettings() {
+  const player = {
+    name: '',
+    color_sequence: [],
+    sequence: 1,
+    can_continue: true,
+  };
+  return player;
+}
+
+function gameOver(player, game) {
+  disableButtons();
+  const $startButton = document.getElementById('start-game');
+  reset(game.color_sequence);
+  reset(player.color_sequence);
+  player.sequence = 1;
+  player.can_continue = true;
+  $startButton.textContent = `Game Over!`;
+
+  setTimeout(function () {
+    $startButton.removeAttribute('disabled');
+    $startButton.textContent = `Start game`;
+  }, 1000);
+
+  return player.can_continue;
+}
+
+function nextRound(player, game) {
+  player.sequence += 1;
+  reset(player.color_sequence);
+  if (player.can_continue) {
+    generateRandomColorSequence(game.color_sequence, game.colors);
+  }
+
+  light(game);
+
+  return player.can_continue;
+}
+
+function start(game) {
+  const $startButton = document.getElementById('start-game');
+  $startButton.setAttribute('disabled', true);
 
   generateRandomColorSequence(game.color_sequence, game.colors);
 
@@ -141,6 +148,7 @@ function reset(sequence) {
 }
 
 function light(game) {
+  const $startButton = document.getElementById('start-game');
   let delay = 0;
 
   for (let i = 0; i < game.color_sequence.length; i++) {
@@ -150,6 +158,7 @@ function light(game) {
     const $button = document.getElementById(`${game.color_sequence[i]}-button`);
     setTimeout(function () {
       $button.classList.add('light');
+      audio(game.color_sequence[i]);
     }, 1000 * delay);
     setTimeout(function () {
       $button.classList.remove('light');
@@ -164,6 +173,37 @@ function light(game) {
   }
 
   return true;
+}
+
+function audio(color) {
+  let audio;
+  switch (color) {
+    case 'green':
+      audio = new Audio(
+        `https://s3.amazonaws.com/freecodecamp/simonSound1.mp3`
+      );
+      audio.play();
+      break;
+    case 'red':
+      audio = new Audio(
+        `https://s3.amazonaws.com/freecodecamp/simonSound2.mp3`
+      );
+      audio.play();
+      break;
+    case 'blue':
+      audio = new Audio(
+        `https://s3.amazonaws.com/freecodecamp/simonSound3.mp3`
+      );
+      audio.play();
+      break;
+    default:
+      audio = new Audio(
+        `https://s3.amazonaws.com/freecodecamp/simonSound4.mp3`
+      );
+      audio.play();
+  }
+
+  return color;
 }
 
 function disableButtons() {
