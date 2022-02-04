@@ -35,7 +35,7 @@ function initializePlayerSettings() {
   });
 }
 
-function gameOver(player, game) {
+function performGameOver(player, game) {
   lockGameButtons();
   const $startButton = document.getElementById('start-game');
   reset(game.color_sequence);
@@ -49,10 +49,10 @@ function gameOver(player, game) {
     $startButton.textContent = `Start game`;
   }, 1000);
 
-  return player.can_continue;
+  return player.color_sequence.length;
 }
 
-function nextRound(player, game) {
+function advanceRound(player, game) {
   player.sequence += 1;
   reset(player.color_sequence);
   if (player.can_continue) {
@@ -61,7 +61,7 @@ function nextRound(player, game) {
 
   light(game);
 
-  return player.can_continue;
+  return player.sequence;
 }
 
 function start(game) {
@@ -78,17 +78,18 @@ function start(game) {
 function recordPlayerActions(event, player, game) {
   const playerInput = capturePlayerInput(event);
   player.color_sequence.push(playerInput);
-  player.can_continue = evaluatePayerSequence(player, game);
+  player.can_continue = evaluatePlayerSequence(player, game);
   if (!player.can_continue) {
-    player.can_continue = gameOver(player, game);
+    performGameOver(player, game);
+    player.can_continue = true;
   }
   return player.can_continue;
 }
 
 function generateRandomColorSequence(colorSequence, colors) {
   const max = colors.length;
-  const randomNumber = generateRandomNumber(0, max);
-  const randomColor = generateRandomColor(colors, randomNumber);
+  const randomNumber = getRandomNumber(0, max);
+  const randomColor = getRandomColor(colors, randomNumber);
   colorSequence.push(randomColor);
   return colorSequence.length;
 }
@@ -97,7 +98,7 @@ function capturePlayerInput(event) {
   return event.target.value;
 }
 
-function evaluatePayerSequence(player, game) {
+function evaluatePlayerSequence(player, game) {
   let correctAttempts = 0;
   for (let i = 0; i < player.color_sequence.length; i++) {
     if (player.color_sequence[i] !== game.color_sequence[i]) {
@@ -108,17 +109,18 @@ function evaluatePayerSequence(player, game) {
   }
 
   if (player.can_continue && correctAttempts === game.color_sequence.length) {
-    player.can_continue = nextRound(player, game);
+    advanceRound(player, game);
+    player.can_continue = true;
   }
 
   return player.can_continue;
 }
 
-function generateRandomNumber(min, max) {
+function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-function generateRandomColor(colors, randomNumber) {
+function getRandomColor(colors, randomNumber) {
   return colors[randomNumber];
 }
 
