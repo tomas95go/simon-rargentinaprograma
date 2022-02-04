@@ -1,6 +1,6 @@
 initializeGame();
 function initializeGame() {
-  disableButtons();
+  lockGameButtons(true);
   const $startButton = document.getElementById('start-game');
   $startButton.addEventListener('click', () => start(game), false);
 
@@ -56,7 +56,7 @@ function initializePlayerSettings() {
 }
 
 function gameOver(player, game) {
-  disableButtons();
+  lockGameButtons(true);
   const $startButton = document.getElementById('start-game');
   reset(game.color_sequence);
   reset(player.color_sequence);
@@ -154,7 +154,7 @@ function light(game) {
   for (let i = 0; i < game.color_sequence.length; i++) {
     delay += 1;
     $startButton.textContent = `Computers turn!`;
-    disableButtons();
+    lockGameButtons(true);
     const $button = document.getElementById(`${game.color_sequence[i]}-button`);
     setTimeout(function () {
       $button.classList.add('light');
@@ -167,7 +167,7 @@ function light(game) {
     if (delay === game.color_sequence.length) {
       setTimeout(function () {
         $startButton.textContent = `Your turn!`;
-        enableButtons();
+        lockGameButtons(false);
       }, 1100 * delay);
     }
   }
@@ -206,26 +206,14 @@ function audio(color) {
   return color;
 }
 
-function disableButtons() {
-  const $greenButton = document.getElementById('green-button');
-  const $redButton = document.getElementById('red-button');
-  const $blueButton = document.getElementById('blue-button');
-  const $yellowButton = document.getElementById('yellow-button');
-
-  $greenButton.setAttribute('disabled', true);
-  $redButton.setAttribute('disabled', true);
-  $blueButton.setAttribute('disabled', true);
-  $yellowButton.setAttribute('disabled', true);
-}
-
-function enableButtons() {
-  const $greenButton = document.getElementById('green-button');
-  const $redButton = document.getElementById('red-button');
-  const $blueButton = document.getElementById('blue-button');
-  const $yellowButton = document.getElementById('yellow-button');
-
-  $greenButton.removeAttribute('disabled');
-  $redButton.removeAttribute('disabled');
-  $blueButton.removeAttribute('disabled');
-  $yellowButton.removeAttribute('disabled');
+function lockGameButtons(state) {
+  if (state) {
+    document
+      .querySelectorAll('.color-box')
+      .forEach((btn) => btn.setAttribute('disabled', state));
+  } else {
+    document
+      .querySelectorAll('.color-box')
+      .forEach((btn) => btn.removeAttribute('disabled'));
+  }
 }
