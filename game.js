@@ -209,11 +209,11 @@ function audio(color) {
 function lockGameButtons(state) {
   if (state) {
     document
-      .querySelectorAll('.color-box')
+      .querySelectorAll('.game-btn')
       .forEach((btn) => btn.setAttribute('disabled', state));
   } else {
     document
-      .querySelectorAll('.color-box')
+      .querySelectorAll('.game-btn')
       .forEach((btn) => btn.removeAttribute('disabled'));
   }
 }
