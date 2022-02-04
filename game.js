@@ -1,6 +1,6 @@
 initializeGame();
 function initializeGame() {
-  lockGameButtons(true);
+  lockGameButtons();
   const $startButton = document.getElementById('start-game');
   $startButton.addEventListener('click', () => start(game), false);
 
@@ -36,7 +36,7 @@ function initializePlayerSettings() {
 }
 
 function gameOver(player, game) {
-  lockGameButtons(true);
+  lockGameButtons();
   const $startButton = document.getElementById('start-game');
   reset(game.color_sequence);
   reset(player.color_sequence);
@@ -134,7 +134,7 @@ function light(game) {
   for (let i = 0; i < game.color_sequence.length; i++) {
     delay += 1;
     $startButton.textContent = `Computers turn!`;
-    lockGameButtons(true);
+    lockGameButtons();
     const $button = document.getElementById(`${game.color_sequence[i]}-button`);
     setTimeout(function () {
       $button.classList.add('light');
@@ -147,7 +147,7 @@ function light(game) {
     if (delay === game.color_sequence.length) {
       setTimeout(function () {
         $startButton.textContent = `Your turn!`;
-        lockGameButtons(false);
+        unlockGameButtons();
       }, 1100 * delay);
     }
   }
@@ -186,14 +186,14 @@ function audio(color) {
   return color;
 }
 
-function lockGameButtons(state) {
-  if (state) {
-    document
-      .querySelectorAll('.game-btn')
-      .forEach((btn) => btn.setAttribute('disabled', state));
-  } else {
-    document
-      .querySelectorAll('.game-btn')
-      .forEach((btn) => btn.removeAttribute('disabled'));
-  }
+function lockGameButtons() {
+  document
+    .querySelectorAll('.game-btn')
+    .forEach((btn) => btn.setAttribute('disabled', true));
+}
+
+function unlockGameButtons() {
+  document
+    .querySelectorAll('.game-btn')
+    .forEach((btn) => btn.removeAttribute('disabled'));
 }
