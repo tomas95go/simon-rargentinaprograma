@@ -71,7 +71,7 @@ console.assert(
 );
 
 console.assert(
-  evaluatePayerSequence(
+  evaluatePlayerSequence(
     {
       name: '',
       color_sequence: ['red'],

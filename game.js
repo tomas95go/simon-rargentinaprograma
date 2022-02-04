@@ -78,7 +78,7 @@ function start(game) {
 function recordPlayerActions(event, player, game) {
   const playerInput = capturePlayerInput(event);
   player.color_sequence.push(playerInput);
-  player.can_continue = evaluatePayerSequence(player, game);
+  player.can_continue = evaluatePlayerSequence(player, game);
   if (!player.can_continue) {
     performGameOver(player, game);
     player.can_continue = true;
@@ -98,7 +98,7 @@ function capturePlayerInput(event) {
   return event.target.value;
 }
 
-function evaluatePayerSequence(player, game) {
+function evaluatePlayerSequence(player, game) {
   let correctAttempts = 0;
   for (let i = 0; i < player.color_sequence.length; i++) {
     if (player.color_sequence[i] !== game.color_sequence[i]) {
