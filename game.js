@@ -8,33 +8,15 @@ function initializeGame() {
 
   const player = initializePlayerSettings();
 
-  const $greenButton = document.getElementById('green-button');
-  $greenButton.addEventListener(
-    'click',
-    (event) => recordPlayerActions(event, player, game),
-    false
-  );
-
-  const $redButton = document.getElementById('red-button');
-  $redButton.addEventListener(
-    'click',
-    (event) => recordPlayerActions(event, player, game),
-    false
-  );
-
-  const $blueButton = document.getElementById('blue-button');
-  $blueButton.addEventListener(
-    'click',
-    (event) => recordPlayerActions(event, player, game),
-    false
-  );
-
-  const $yellowButton = document.getElementById('yellow-button');
-  $yellowButton.addEventListener(
-    'click',
-    (event) => recordPlayerActions(event, player, game),
-    false
-  );
+  document
+    .querySelectorAll('.game-btn')
+    .forEach((btn) =>
+      btn.addEventListener(
+        'click',
+        (event) => recordPlayerActions(event, player, game),
+        false
+      )
+    );
 }
 
 function initializeGameSettings() {
