@@ -1,6 +1,6 @@
 //Write tests for initializeGameSettings and initializePlayerSettings
 console.assert(
-  gameOver(
+  performGameOver(
     {
       name: '',
       color_sequence: ['red'],
@@ -11,12 +11,12 @@ console.assert(
       colors: ['green', 'red', 'blue', 'yellow'],
       color_sequence: ['red'],
     }
-  ) === true,
+  ) === 0,
   `Game didn't reset correctly`
 );
 
 console.assert(
-  nextRound(
+  advanceRound(
     {
       name: '',
       color_sequence: ['red'],
@@ -27,7 +27,7 @@ console.assert(
       colors: ['green', 'red', 'blue', 'yellow'],
       color_sequence: ['red'],
     }
-  ) === true,
+  ) === 2,
   `Game didn't advance to next level`
 );
 
@@ -48,18 +48,15 @@ console.assert(
   `Player actions weren't recorded correctly`
 );
 
-console.assert(
-  generateRandomNumber(1, 2) > 0,
-  'Generated numbers exceed the min'
-);
+console.assert(getRandomNumber(1, 2) > 0, 'Generated numbers exceed the min');
 
 console.assert(
-  generateRandomNumber(1, 2) < 3,
+  getRandomNumber(1, 2) < 3,
   'Generated numbers exceed the max range'
 );
 
 console.assert(
-  generateRandomColor(['green', 'red', 'blue', 'yellow'], 2) === 'blue',
+  getRandomColor(['green', 'red', 'blue', 'yellow'], 2) === 'blue',
   `Generated color doesn't match`
 );
 
