@@ -38,21 +38,19 @@ function initializeGame() {
 }
 
 function initializeGameSettings() {
-  const game = {
+  return (game = {
     colors: ['green', 'red', 'blue', 'yellow'],
     color_sequence: [],
-  };
-  return game;
+  });
 }
 
 function initializePlayerSettings() {
-  const player = {
+  return (player = {
     name: '',
     color_sequence: [],
     sequence: 1,
     can_continue: true,
-  };
-  return player;
+  });
 }
 
 function gameOver(player, game) {
