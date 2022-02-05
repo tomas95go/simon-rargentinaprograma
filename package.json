@@ -1,0 +1,22 @@
+{
+  "name": "simon",
+  "version": "1.0.0",
+  "description": "Program that mimics the popular \"Simon\" game",
+  "main": "",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomas95go/simon-rargentinaprograma.git"
+  },
+  "author": "Gonzalez Oviedo Tomas",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomas95go/simon-rargentinaprograma/issues"
+  },
+  "homepage": "https://github.com/tomas95go/simon-rargentinaprograma#readme",
+  "devDependencies": {
+    "cypress": "^9.4.1"
+  }
+}
