@@ -13,7 +13,7 @@ describe('The Game', function () {
 
     cy.get('#start-game').contains('Computers turn!');
 
-    cy.get('.light').as('clickedBtn');
+    cy.get('.game-btn').filter('.light').as('clickedBtn');
 
     cy.get('.game-btn').should('not.have.attr', 'disabled');
 
@@ -33,7 +33,7 @@ describe('The Game', function () {
 
     cy.get('#start-game').contains('Computers turn!');
 
-    cy.get('.light').as('clickedBtn');
+    cy.get('.game-btn').filter('.light').as('clickedBtn');
 
     cy.get('.game-btn').should('not.have.attr', 'disabled');
 
