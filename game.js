@@ -20,19 +20,22 @@ function initializeGame() {
 }
 
 function initializeGameSettings() {
-  return (game = {
+  const game = {
     colors: ['green', 'red', 'blue', 'yellow'],
     color_sequence: [],
-  });
+  };
+  return game;
 }
 
 function initializePlayerSettings() {
-  return (player = {
+  const player = {
     name: '',
     color_sequence: [],
     sequence: 1,
     can_continue: true,
-  });
+  };
+
+  return player;
 }
 
 function performGameOver(player, game) {
@@ -199,3 +202,9 @@ function unlockGameButtons() {
     .querySelectorAll('.game-btn')
     .forEach((btn) => btn.removeAttribute('disabled'));
 }
+
+module.exports = {
+  initializeGameSettings,
+  initializePlayerSettings,
+  getRandomNumber,
+};
