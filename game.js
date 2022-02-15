@@ -1,4 +1,7 @@
-initializeGame();
+window.onload = function () {
+  initializeGame();
+};
+
 function initializeGame() {
   lockGameButtons();
   const $startButton = document.getElementById('start-game');
@@ -207,4 +210,7 @@ module.exports = {
   initializeGameSettings,
   initializePlayerSettings,
   getRandomNumber,
+  capturePlayerInput,
+  getRandomColor,
+  reset,
 };
