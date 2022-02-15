@@ -65,7 +65,7 @@ function advanceRound(player, game) {
     generateRandomColorSequence(game.color_sequence, game.colors);
   }
 
-  light(game);
+  illuminateBtn(game);
 
   return player.sequence;
 }
@@ -76,7 +76,7 @@ function start(game) {
 
   generateRandomColorSequence(game.color_sequence, game.colors);
 
-  light(game);
+  illuminateBtn(game);
 
   return game.color_sequence.length;
 }
@@ -135,7 +135,7 @@ function reset(sequence) {
   return sequence.length;
 }
 
-function light(game) {
+function illuminateBtn(game) {
   const $startButton = document.getElementById('start-game');
   let delay = 0;
 
@@ -146,7 +146,7 @@ function light(game) {
     const $button = document.getElementById(`${game.color_sequence[i]}-button`);
     setTimeout(function () {
       $button.classList.add('light');
-      audio(game.color_sequence[i]);
+      playAudio(game.color_sequence[i]);
     }, 1000 * delay);
     setTimeout(function () {
       $button.classList.remove('light');
@@ -163,7 +163,7 @@ function light(game) {
   return true;
 }
 
-function audio(color) {
+function playAudio(color) {
   let audio;
   switch (color) {
     case 'green':
