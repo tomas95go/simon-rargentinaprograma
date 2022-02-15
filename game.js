@@ -1,5 +1,3 @@
-'use strict';
-
 window.onload = function () {
   initializeGame();
 };
@@ -208,7 +206,7 @@ function unlockGameButtons() {
     .forEach((btn) => btn.removeAttribute('disabled'));
 }
 
-export default {
+module.exports = {
   initializeGameSettings,
   initializePlayerSettings,
   getRandomNumber,
