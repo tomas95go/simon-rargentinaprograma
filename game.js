@@ -22,7 +22,7 @@ function initializeGame() {
     );
 }
 
-function initializeGameSettings() {
+export function initializeGameSettings() {
   const game = {
     colors: ['green', 'red', 'blue', 'yellow'],
     color_sequence: [],
@@ -30,7 +30,7 @@ function initializeGameSettings() {
   return game;
 }
 
-function initializePlayerSettings() {
+export function initializePlayerSettings() {
   const player = {
     name: '',
     color_sequence: [],
@@ -100,7 +100,7 @@ function generateRandomColorSequence(colorSequence, colors) {
   return colorSequence.length;
 }
 
-function capturePlayerInput(event) {
+export function capturePlayerInput(event) {
   return event.target.value;
 }
 
@@ -126,11 +126,11 @@ export function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
-function getRandomColor(colors, randomNumber) {
+export function getRandomColor(colors, randomNumber) {
   return colors[randomNumber];
 }
 
-function reset(sequence) {
+export function reset(sequence) {
   sequence.length = 0;
   return sequence.length;
 }
