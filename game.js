@@ -122,7 +122,7 @@ function evaluatePlayerSequence(player, game) {
   return player.can_continue;
 }
 
-function getRandomNumber(min, max) {
+export function getRandomNumber(min, max) {
   return Math.floor(Math.random() * (max - min) + min);
 }
 
@@ -205,12 +205,3 @@ function unlockGameButtons() {
     .querySelectorAll('.game-btn')
     .forEach((btn) => btn.removeAttribute('disabled'));
 }
-
-module.exports = {
-  initializeGameSettings,
-  initializePlayerSettings,
-  getRandomNumber,
-  capturePlayerInput,
-  getRandomColor,
-  reset,
-};
