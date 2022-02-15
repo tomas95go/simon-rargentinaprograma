@@ -206,7 +206,7 @@ function unlockGameButtons() {
     .forEach((btn) => btn.removeAttribute('disabled'));
 }
 
-module.exports = {
+export default {
   initializeGameSettings,
   initializePlayerSettings,
   getRandomNumber,
